@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dark Login System</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+}
+
+/* Glass Card */
+.container{
+background:rgba(255,255,255,0.08);
+padding:40px;
+width:380px;
+border-radius:20px;
+backdrop-filter:blur(15px);
+box-shadow:0 0 40px rgba(0,0,0,0.6);
+animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+h2{
+text-align:center;
+margin-bottom:25px;
+color:#00f5d4;
+}
+
+/* Input Fields */
+.input-group{
+margin-bottom:20px;
+}
+
+.input-group input{
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+background:rgba(255,255,255,0.1);
+color:white;
+outline:none;
+}
+
+.input-group input::placeholder{
+color:#ccc;
+}
+
+/* Button */
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:25px;
+background:#00f5d4;
+color:black;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+background:white;
+}
+
+/* Hide success initially */
+#successSection{
+display:none;
+text-align:center;
+}
+
+.details{
+margin:10px 0;
+font-size:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- Login Form -->
+<div id="loginSection">
+<h2>User Login</h2>
+
+<form id="loginForm">
+
+<div class="input-group">
+<input type="text" id="username" placeholder="Enter Username" required>
+</div>
+
+<div class="input-group">
+<input type="password" id="password" placeholder="Enter Password" required>
+</div>
+
+<button type="submit">Login</button>
+
+</form>
+</div>
+
+<!-- Success Section -->
+<div id="successSection">
+<h2>Login Successful 🎉</h2>
+
+<div class="details">
+<strong>Username:</strong> <span id="showUser"></span>
+</div>
+
+<div class="details">
+<strong>Password:</strong> <span id="showPass"></span>
+</div>
+
+<br>
+<button onclick="logout()">Logout</button>
+</div>
+
+</div>
+
+<script>
+const form = document.getElementById("loginForm");
+
+form.addEventListener("submit", function(e){
+e.preventDefault();
+
+const username = document.getElementById("username").value;
+const password = document.getElementById("password").value;
+
+// Show success section
+document.getElementById("loginSection").style.display = "none";
+document.getElementById("successSection").style.display = "block";
+
+// Display entered data
+document.getElementById("showUser").textContent = username;
+document.getElementById("showPass").textContent = password;
+});
+
+function logout(){
+document.getElementById("successSection").style.display = "none";
+document.getElementById("loginSection").style.display = "block";
+form.reset();
+}
+</script>
+
+</body>
+</html>
